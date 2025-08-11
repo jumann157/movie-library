@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://kit.fontawesome.com/3d86190b86.js" crossorigin="anonymous"></script>
+    <title>Movie Website</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Tutorial</a></li>
+            <li data-tooltip="Profile"><a href="#"><i class="fa-solid fa-user"></i></a></li>
+        </ul>
+    </nav>
+    <div class="nav-title">
+        <h1>YOUR LIBRARY</h1>
+    </div>
+    <main>
+        <div class="movie-card">
+            <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+
+        <div class="movie-card">
+            <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+
+        <div class="movie-card">
+            <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/Superman.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/Superman.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+        <div class="movie-card">
+            <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
+            <span class="caption">Iron Man</span>
+        </div>
+
+    </main>
+
+    <div id="button-container">
+        <button type="button">+</button>
+    </div>
+
+    <div class="blur-background"></div>
+    <div class="movie-form first">
+        <i class="fa-regular fa-circle-xmark"></i>
+        <search>
+            <form>
+                <h1 for="movie" class="center-line">Find movie</h1>
+                <input type="search" id="movie"/>
+                <button type="submit">Search</button>
+            </form>
+        </search>
+        <p class="center-line or"> -------------------------- or -------------------------- </p>
+        <h1 class="center-line">Manually add movie</h1>
+        <form class="manual-movie-form">
+            <div class="wrapper">
+                <label for="movie-name">Movie Title: </label>
+                <i class="fa-solid fa-asterisk"></i>
+            </div>
+                <input type="text" id="movie-name" name="movie-name" required/>
+            
+            <label for="movie-poster">Movie Poster: </label>
+            <input type="file" id="movie-poster" name="movie-poster" accept="image/png, image/jpeg" />
+            
+            <label for="movie-release-date">Year Released: </label>
+            <input type="number" id="movie-release-date" name="movie-release-date" min="1970"/> <!-- max is current year-->
+            
+            <label for="movie-description">Extra Information: </label>
+            <textarea id="movie-description" name="movie-description" rows="5" cols="33"></textarea>
+            
+            <button type="submit">Add</button>
+        </form>
+        <div class="progress-container">
+            <span class="progress-circle first"></span>
+            <span class="progress-circle second"></span>
+        </div>
+    </div>
+
+    <div  class="movie-form second">
+        <i class="fa-regular fa-circle-xmark"></i>
+        <h1>When do you want to watch this movie?</h1>
+        <div class="genre-checkboxes">
+            <div class="checkbox-container">
+                <input type="checkbox" id="cry" name="vibe" value="cry" />
+                <label for="cry">Need a good cry</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="inspired" name="vibe" value="inspired" />
+                <label for="inspired">Want to be inspired</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="laugh" name="vibe" value="laugh" />
+                <label for="laugh">Want to laugh</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="scared" name="vibe" value="scared" />
+                <label for="scared">In the mood of horror</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="adrenaline" name="vibe" value="adrenaline" />
+                <label for="adrenaline">Get my adrenaline pumping</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="artistic" name="vibe" value="artistic" />
+                <label for="artistic">Need artistic inspiration</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="feel-good" name="vibe" value="feel-good" />
+                <label for="feel-good">Feel-good movie</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="relax" name="vibe" value="relax" />
+                <label for="relax">Want to relax</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="new" name="vibe" value="new" />
+                <label for="new">Try something new</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="classic" name="vibe" value="classic" />
+                <label for="classic">In the mood of a classic</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="romance" name="vibe" value="romance" />
+                <label for="romance">Romance</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="2000s" name="vibe" value="2000s" />
+                <label for="2000s">Early 2000s</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="background" name="vibe" value="background" />
+                <label for="background">Background movie</label>
+            </div>
+        </div>
+        <div class="progress-container">
+            <span class="progress-circle first"></span>
+            <span class="progress-circle second"></span>
+        </div>
+    </div>
+    <script src="./javascript/movieForm.js"></script>
+</body>
+</html>
