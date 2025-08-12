@@ -7,7 +7,9 @@
 
 @font-face {
     font-family: 'Satoshi-Medium';
-    src: url('Satoshi_Complete/Fonts/OTF/Satoshi-Medium.otf');
+    /* src: ur('Satoshi_Complete/Fonts/WEB/Satoshi'); */
+    src: url('Satoshi_Complete/Fonts/WEB/Satoshi\ Font/Satoshi-Medium.woff2');
+    /* src: url('Satoshi_Complete/Fonts/OTF/Satoshi-Medium.otf');  */
     font-weight: 500;
     font-display: swap;
     font-style: normal;
@@ -362,10 +364,10 @@ textarea {
 
 main {
     box-sizing: border-box;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: stretch;
+    display: grid;
+    grid-template-rows: 20em;
+    grid-template-columns: repeat(auto-fill, minmax(10em, 11em));
+    grid-auto-rows: 20em;
     gap: 20px 30px;
     width: 100%;
     height: auto;
@@ -374,15 +376,13 @@ main {
 }
 
 .movie-card {
-    width: 11em;
+    width: 100%;
     max-width: 11em;
-    height: 20em;
-    max-height: 20em;
     border: 1px solid black;
 }
 
 .poster {
-    width: 11em;
+    width: 100%;
     height: 16em;
     object-fit: cover;
     display: block;

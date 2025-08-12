@@ -17,7 +17,7 @@ addButton.addEventListener('click',  e => {
     });
 });
 
-// Event listener to get to the second page
+// Event listener to get to the second page of the form
 const movieForm = document.querySelector(".manual-movie-form");
 movieForm.addEventListener('submit', e => {
     e.preventDefault();
