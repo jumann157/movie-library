@@ -18,7 +18,7 @@ body {
     font-family: 'Satoshi-Medium', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    height: 1000px;
+    /* height: 1000px; */
     overflow-x: hidden;
     /* background-image: url(starry_night.jpg); */
 }
@@ -68,13 +68,13 @@ body {
     background-color: var(--purple);
     border: 0;
     border-radius: 50%;
-    box-shadow: 0 0  20px 2px #50567a;
+    box-shadow: 0 0  20px 0px #50567a;
 }
 
 #button-container button:hover {
     color: var(--purple);
     background-color: white;
-    box-shadow: 0 0  20px 2px #c7cadd;
+    box-shadow: 0 0  20px 1px #c7cadd;
     cursor: pointer;
 }
 
@@ -173,7 +173,7 @@ body {
     box-sizing: content-box;
 }
 
-textarea {
+.movie-form.first textarea {
     resize: vertical;
 }
 
@@ -218,8 +218,11 @@ textarea {
     /* border: 1px solid;  */
 }
 
-.fa-circle-xmark {
+.movie-form .fa-circle-xmark {
     /* border: 1px solid;  */
+    display: block;
+    height: 1.5em;
+    width: 1.5em;
     font-size: 25px;
     color:  black;
     cursor: pointer;
@@ -363,6 +366,10 @@ textarea {
 }
 
 main {
+    position: relative;
+}
+
+.card-container {
     box-sizing: border-box;
     display: grid;
     grid-template-rows: 20em;
@@ -393,4 +400,95 @@ main {
 .caption {
     display: block;
     text-align: center;
+}
+
+.description-side-menu {
+    display: grid;
+    grid-template-rows: 0.7em  auto 25em auto auto 1fr;
+    grid-template-columns: 25em;
+    grid-auto-rows: auto;
+    grid-template-areas:
+    'nav'
+    'close'
+    'poster'
+    'title'
+    'rating'
+    'commentary';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 25em;
+    background-color: hsl(from var(--purple) h s calc(l - 30));
+    color: white;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.description-side-menu .sidebar-nav {
+    grid-row: nav;
+    background-color: hsl(from var(--purple) h s calc(l + 30));
+
+}
+
+.description-side-menu .fa-circle-xmark {
+    grid-row: close;
+    color: white;
+    padding: 5px;
+    font-size: 1.2em;
+    /* border: 1px solid white; */
+}
+
+.description-side-menu img {
+    grid-row: poster;
+    display: block;
+    width: 17em;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.description-side-menu h2 {
+    text-align: center;
+    grid-row: title;
+    margin: 0.7em auto;
+}
+
+.description-side-menu .rating-container {
+    grid-row: rating;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+.description-side-menu .rating-container p {
+    display: inline;
+}
+
+.description-side-menu #star-rating {
+    display: inline;
+    text-align: center;
+    /* border: 1px solid white; */
+    width: 100%;
+}
+
+.description-side-menu #star-rating .fa-regular.fa-star {
+    font-size: 1.4em;
+    color: var(--yellow);
+}
+
+.description-side-menu .comment-container {
+    grid-row: commentary;
+}
+
+.comment-container label {
+    display: block;
+    margin: 5px;
+}
+
+.comment-container textarea {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 5px;
+
 }

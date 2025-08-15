@@ -15,57 +15,80 @@
             <li data-tooltip="Profile"><a href="#"><i class="fa-solid fa-user"></i></a></li>
         </ul>
     </nav>
-    <div class="nav-title">
+    <header class="nav-title">
         <h1>YOUR LIBRARY</h1>
-    </div>
+    </header>
     <main>
-        <div class="movie-card">
-            <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
+        <section class="card-container">
+            <div class="movie-card">
+                <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
 
-        <div class="movie-card">
-            <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
 
-        <div class="movie-card">
-            <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/Superman.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/Superman.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
-        <div class="movie-card">
-            <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
-            <span class="caption">Iron Man</span>
-        </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/Superman.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/starry_night.jpg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/Superman.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/How-To-Train-Your-Dragon.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+            <div class="movie-card">
+                <img class="poster" src="Assets/Iron-Man-Poster.jpeg" alt="Iron-Man-Poster">
+                <span class="caption">Iron Man</span>
+            </div>
+        </section>
 
+        <div class="description-side-menu">
+            <div class="sidebar-nav"></div>
+            <div class="sidebar-nav"></div>
+            <i class="fa-regular fa-circle-xmark"></i>
+            <img src="Assets/Iron-Man-Poster.jpeg" alt="poster goes here"> <!-- poster goes here-->
+            <h2>Iron Man</h2> 
+            <div class="rating-container">
+                <p>Your rating:</p>
+                <div id="star-rating">
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+            <div class="comment-container">
+                <label for="comment">Commentary:</label>
+                <textarea id="comment" name="user-comment" rows="5" cols="33"></textarea>
+            </div>
+        </div>
     </main>
 
     <div id="button-container">
@@ -175,6 +198,11 @@
             <div class="checkbox-container">
                 <input type="checkbox" id="background" name="vibe" value="background" />
                 <label for="background">Background movie</label>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="sleep" name="vibe" value="sleep" />
+                <label for="sleep">As I sleep</label>
             </div>
         </div>
         <div class="progress-container">

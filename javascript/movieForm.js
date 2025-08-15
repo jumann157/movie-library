@@ -1,12 +1,14 @@
 const blurOverlay = document.querySelector(".blur-background");
 const movieFormOne = document.querySelector(".movie-form.first");
 const movieFormTwo = document.querySelector(".movie-form.second");
+const sideMenu = document.querySelector(".description-side-menu");
+const movieCard = document.querySelectorAll(".movie-card");
 
 console.log(blurOverlay);
 
 
 // Event listener for the + button
-const addButton = document.getElementById("button-container");
+const addButton = document.querySelector("#button-container button");
 addButton.addEventListener('click',  e => {
     blurOverlay.style.display = "block";
     movieFormOne.style.display = "block";
@@ -28,11 +30,25 @@ movieForm.addEventListener('submit', e => {
 });
 
 // Event listener to close the form
-const closeIcon = document.querySelectorAll(".movie-form .fa-regular.fa-circle-xmark");
-closeIcon.forEach(icon => {
+const formCloseIcon = document.querySelectorAll(".movie-form .fa-circle-xmark");
+formCloseIcon.forEach(icon => {
     icon.addEventListener('click', e => {
-    blurOverlay.style.display = "none";
-    movieFormOne.style.display = "none";
-    movieFormTwo.style.display = "none";
+        blurOverlay.style.display = "none";
+        movieFormOne.style.display = "none";
+        movieFormTwo.style.display = "none";
     });
 });
+
+// Opens movie description sidebar
+movieCard.forEach(card => {
+    card.addEventListener('click', e => {
+        sideMenu.style.display = "block";
+    });
+});
+
+const sideMenuCloseIcon = document.querySelector(".description-side-menu .fa-circle-xmark");
+sideMenuCloseIcon.addEventListener('click', e => {
+    sideMenu.style.display = "none";
+});
+
+// fills star rating
