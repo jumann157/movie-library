@@ -51,4 +51,11 @@ sideMenuCloseIcon.addEventListener('click', e => {
     sideMenu.style.display = "none";
 });
 
-// fills star rating
+// search button trigger
+const searchForm = document.querySelector(".movie-form.first search form");
+const searchInput = document.querySelector(".movie-form.first search form input");
+searchForm.addEventListener('submit', e => {
+    e.preventDefault();
+    console.log(searchInput.value);
+    searchInput.value = "";
+});
