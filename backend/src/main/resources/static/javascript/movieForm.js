@@ -1,11 +1,9 @@
 const blurOverlay = document.querySelector(".blur-background");
 const movieFormOne = document.querySelector(".movie-form.first");
 const movieFormTwo = document.querySelector(".movie-form.second");
-const sideMenu = document.querySelector(".description-side-menu");
+const sideMenu = document.querySelector("#description-side-menu");
 const movieCard = document.querySelectorAll(".movie-card");
 const BASE_URL = 'http://localhost:8080';
-
-console.log(blurOverlay);
 
 
 // Event listener for the + button
@@ -15,6 +13,7 @@ addButton.addEventListener('click',  e => {
     movieFormOne.style.display = "block";
     movieFormTwo.style.display = "none";
     addButton.style.display = "none";
+    resultsContainer.style.display = "none";
     let inputForm = document.querySelectorAll(".movie-form input");
     inputForm.forEach(input => {
         input.value = "";
@@ -36,10 +35,7 @@ movieForm.addEventListener('submit', e => {
 const formCloseIcon = document.querySelectorAll(".movie-form .fa-circle-xmark");
 formCloseIcon.forEach(icon => {
     icon.addEventListener('click', e => {
-        blurOverlay.style.display = "none";
-        movieFormOne.style.display = "none";
-        movieFormTwo.style.display = "none";
-        addButton.style.display = "block";
+        closeForm();
     });
 });
 
@@ -50,10 +46,18 @@ movieCard.forEach(card => {
     });
 });
 
-const sideMenuCloseIcon = document.querySelector(".description-side-menu .fa-circle-xmark");
+const sideMenuCloseIcon = document.querySelector("#description-side-menu .fa-circle-xmark");
 sideMenuCloseIcon.addEventListener('click', e => {
     sideMenu.style.display = "none";
+    
 });
+
+function closeForm() {
+    blurOverlay.style.display = "none";
+    movieFormOne.style.display = "none";
+    movieFormTwo.style.display = "none";
+    addButton.style.display = "block";
+}
 
 // search button functionality
 const searchForm = document.getElementById("search-form");
@@ -99,6 +103,31 @@ function displaySearchResults(movieList) {
         );
     }
     resultsContainer.style.display = "block";
+}
+
+    resultsContainer.addEventListener('click', event => {
+    const target = event.target.closest("li");
+    if(target) {
+        addMovieToLibrary(target);
+    }
+    });
+
+// adds movie to library
+function addMovieToLibrary(movie) {
+    const moviePoster = movie.querySelector("img");
+    moviePoster.className = "poster";
+    const movieTitle = movie.querySelector("p");
+    movieTitle.className = "caption";
+    // get div container
+    const libraryContainer = document.getElementById("library-container");
+    // create div
+    const movieCard = document.createElement("div");
+    movieCard.className = "movie-card";
+    movieCard.appendChild(moviePoster);
+    movieCard.appendChild(movieTitle);
+    // add movie to libraryContainer
+    libraryContainer.appendChild(movieCard);
+    closeForm();
 }
 
 function testDisplay() {
