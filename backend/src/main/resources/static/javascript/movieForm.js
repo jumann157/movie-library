@@ -14,6 +14,7 @@ addButton.addEventListener('click',  e => {
     blurOverlay.style.display = "block";
     movieFormOne.style.display = "block";
     movieFormTwo.style.display = "none";
+    addButton.style.display = "none";
     let inputForm = document.querySelectorAll(".movie-form input");
     inputForm.forEach(input => {
         input.value = "";
@@ -38,6 +39,7 @@ formCloseIcon.forEach(icon => {
         blurOverlay.style.display = "none";
         movieFormOne.style.display = "none";
         movieFormTwo.style.display = "none";
+        addButton.style.display = "block";
     });
 });
 

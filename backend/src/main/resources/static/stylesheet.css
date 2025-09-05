@@ -90,15 +90,15 @@ body {
     position: fixed;
     border: 5px solid black;
     width: 500px;
-    height: 590px;
+    height: 630px;
     /* margin-bottom: 0px; */
     left: 50%;
-    top: 43%;
+    top: 47%;
     transform: translate(-50%, -43%);
     padding: 30px;
     background-color: var(--light-purple);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: auto;
     z-index: 1;
 }
 
@@ -199,7 +199,6 @@ body {
 .progress-container {
     position: absolute; 
     width: 90%;
-    bottom: 0.05em;
     margin: 0;
     padding: 0;
     text-align: center;
