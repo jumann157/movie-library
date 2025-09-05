@@ -19,7 +19,7 @@ addButton.addEventListener('click',  e => {
     inputForm.forEach(input => {
         input.value = "";
     });
-    testDisplay();
+    // testDisplay();
 });
 
 // Event listener to get to the second page of the form
@@ -56,7 +56,7 @@ sideMenuCloseIcon.addEventListener('click', e => {
 });
 
 // search button functionality
-const searchForm = document.querySelector(".movie-form.first search form");
+const searchForm = document.getElementById("search-form");
 const searchInput = searchForm.querySelector("input");
 const resultsContainer = document.getElementById("search-results");
 searchForm.addEventListener('submit', async(e) => {
@@ -81,27 +81,29 @@ searchForm.addEventListener('submit', async(e) => {
 });
 
 function displaySearchResults(movieList) {
+    resultsContainer.style.display = "block";
     const listul = resultsContainer.querySelector("ul");
-    console.log(listul);
-    console.log(resultsContainer);
     listul.innerHTML = "";
-    for(let i = 0; i < movieList.length; i++) {
+    for(let i = 0; i < movieList.results.length; i++) {
+        const movie = movieList.results[i];
+        const poster = movie.poster_path 
+        ? `<img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt="${movie.original_title}"></img>`
+        : `<div style="height: 80px; width: 60px; border: 1px solid black"> <p style="margin: 0; font-size: 10px;">Poster not available</p> </div>`;
         listul.insertAdjacentHTML('beforeend', 
             `
             <li>
-            <img src="https://image.tmdb.org/t/p/w185/${movieList[i].poster}" alt="${movieList[i].name}">
-            <p>${movieList[i].name}</p>
+            ${poster}
+            <p>${movie.original_title} (${movie.release_date})</p>
             </li>
-            `);
-        // if(i % 7 == 0) {
-        //     // stop until next page button is triggered
-        // }
+            `
+        );
     }
+    resultsContainer.style.display = "block";
 }
 
 function testDisplay() {
     const movieTest = [
-        {name: "Batmaan: Movie 1", poster: "https://image.tmdb.org/t/p/w92/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg"},
+        {name: "Batmaan: Movie 1", poster: "https://image.tmdb.org/t/p/original/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg"},
         {name: "Batman: Movie 2", poster: "https://image.tmdb.org/t/p/original/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg"}
     ];
     displaySearchResults(movieTest);

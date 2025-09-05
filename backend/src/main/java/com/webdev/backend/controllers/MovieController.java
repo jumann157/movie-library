@@ -1,7 +1,7 @@
 package com.webdev.backend.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.webdev.backend.models.MovieResponse;
 import com.webdev.backend.services.MovieService;
 
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 public class MovieController {
 
     private final MovieService movieService;
