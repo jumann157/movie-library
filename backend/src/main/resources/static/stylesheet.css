@@ -23,18 +23,18 @@ body {
     /* background-image: url(starry_night.jpg); */
 }
 
-.manual-movie-form::-webkit-scrollbar {
+#manual-movie-form::-webkit-scrollbar {
     width: 1em;
 }
 
-.manual-movie-form::-webkit-scrollbar-track {
+#manual-movie-form::-webkit-scrollbar-track {
     background: var(--black);
     border-radius: 5%;
     margin-block: 0.5em;
     border-radius: 100vw;
 }
 
-.manual-movie-form::-webkit-scrollbar-thumb {
+#manual-movie-form::-webkit-scrollbar-thumb {
     background: var(--yellow);
     border-radius: 100vw;
 }
@@ -102,7 +102,17 @@ body {
     z-index: 1;
 }
 
-.movie-form .manual-movie-form {
+.movie-form.first search {
+    position: relative;
+}
+
+#search-form input {
+    width: 80%;
+    height: 20px;
+    margin-bottom: 0px;
+}
+
+.movie-form #manual-movie-form {
     box-sizing: border-box;
     border: 3px solid #4C5FD5;
     border-radius: 5%;
@@ -177,7 +187,7 @@ body {
     resize: vertical;
 }
 
-.manual-movie-form button {
+#manual-movie-form button {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -491,4 +501,58 @@ main {
     margin-top: 10px;
     margin-left: 5px;
 
+}
+
+#search-results {
+    position: relative;
+    top: 100%;
+    width: 80%;
+}
+
+.search-results-container {
+    background-color: hsl(from var(--black) h s calc(l + 30) / 0.2);
+}
+
+#search-results ul {
+    padding-left: 0;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#search-results li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+#search-results li:hover {
+    background-color: hsl(from var(--black) h s calc(l + 30) / 0.5);
+}
+
+#search-results ul p {
+    display: inline-block;
+    width: 100%;
+    margin-left: 15px;
+}
+
+#search-results img {
+    width: 60px;
+    height: 80px;
+}
+
+#search-results #arrow-icons-container {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+#arrow-icons-container .fa-circle-left, #arrow-icons-container .fa-circle-right {
+    padding: 3px 5px;
 }

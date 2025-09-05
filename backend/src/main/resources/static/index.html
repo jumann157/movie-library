@@ -99,15 +99,23 @@
     <div class="movie-form first">
         <i class="fa-regular fa-circle-xmark"></i>
         <search>
-            <form>
+            <form id="search-form"> 
                 <h1 for="movie" class="center-line">Find movie</h1>
                 <input type="search" id="movie"/>
                 <button type="submit">Search</button>
             </form>
+            <div id="search-results" class="search-results-container">
+                <!-- Movie results will appear here -->
+                <ul></ul>
+                <div id="arrow-icons-container">
+                    <i id="left-icon" class="fa-regular fa-circle-left"></i>
+                    <i id="right-icon" class="fa-regular fa-circle-right"></i>
+                </div>
+            </div>
         </search>
         <p class="center-line or"> -------------------------- or -------------------------- </p>
         <h1 class="center-line">Manually add movie</h1>
-        <form class="manual-movie-form">
+        <form id="manual-movie-form">
             <div class="wrapper">
                 <label for="movie-name">Movie Title: </label>
                 <i class="fa-solid fa-asterisk"></i>
