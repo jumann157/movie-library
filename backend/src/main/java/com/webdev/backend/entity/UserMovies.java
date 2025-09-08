@@ -20,14 +20,15 @@ public class UserMovies {
 
     @ManyToOne // Many UserMovies have One Movie
     @JoinColumn(
-        name = "movie_id",
+        name = "movie_id", //primary key id, not tmdb_id
         nullable = false
     )
     private Movie movie;
 
     @Column(
         name = "watched",
-        nullable = false
+        nullable = false,
+        columnDefinition = "boolean default false"
     )
     private boolean watched;
 

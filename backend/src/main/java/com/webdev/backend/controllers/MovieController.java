@@ -32,7 +32,8 @@ public class MovieController {
     @PostMapping("/add")
     public ResponseEntity<String> addMovieToDb(@RequestBody MovieDTO movie) {
         try {
-            movieService.addMovie(movie);
+            movieService.checkDuplicates(movie);
+            // add an instance to UserMovie (getUserId, and getMovieID (not tmbdID -> get primary key))
             return ResponseEntity.ok("Movie added successfully");
         } catch (Exception e) {
             e.printStackTrace(); 

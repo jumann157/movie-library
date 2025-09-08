@@ -35,7 +35,7 @@ public class MovieService {
                         .block();
     }
 
-    // saves movie to database
+    // saves movie to database (if searched through the api)
     public void addMovie(MovieDTO movie) { //parameter is supposed to be DTO
         int movieId = movie.getId();
         String movieTitle = movie.getTitle();
@@ -44,5 +44,14 @@ public class MovieService {
         LocalDate movieReleaseDate = LocalDate.parse(movie.getReleaseDate());
         Movie movieRecord = new Movie(movieId, movieTitle, movieOverview, moviePosterPath, movieReleaseDate); // turn it to movieRecord (entity)
         movieRepo.save(movieRecord); // save the entity here
+    }
+
+    // checks for movie duplicates from movies add through the api
+    public void checkDuplicates(MovieDTO movie) {
+        int movieId = movie.getId(); //tmdb_id
+        Movie m = movieRepo.findByTmdbId(movieId); // returns movie enity
+        // if movie is not in database, add it
+        if(m == null) { addMovie(movie); } 
+        // add an instance to UserMovie (getUserId, and getMovieID (not tmbdID -> get primary key))
     }
 }

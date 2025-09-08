@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MovieDTO {
     @JsonProperty("id")
-    private int id;
+    private int id; // tmbd id
 
     @JsonProperty("overview")
     private String overview;
