@@ -12,12 +12,24 @@ public class UserMovies {
     private Long id;
 
     @ManyToOne // Many UserMovies have One User
-    @JoinColumn(name = "user_id")
+    @JoinColumn(
+        name = "user_id",
+        nullable = false
+    )
     private User user;
 
     @ManyToOne // Many UserMovies have One Movie
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(
+        name = "movie_id",
+        nullable = false
+    )
     private Movie movie;
+
+    @Column(
+        name = "watched",
+        nullable = false
+    )
+    private boolean watched;
 
     @Column(
         name = "rating",

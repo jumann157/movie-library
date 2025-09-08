@@ -73,7 +73,7 @@ searchForm.addEventListener('submit', async(e) => {
         const response = await fetch(`${BASE_URL}/search?query=${query}`); //gets response object
         if(!response.ok) throw new Error('Failed!');
         const data = await response.json(); // turns it to json
-        console.log(data);
+        // console.log(data);
 
         displaySearchResults(data); //updates front-end
     } catch(error) {
@@ -94,8 +94,15 @@ function displaySearchResults(movieList) {
         ? `<img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt="${movie.original_title}"></img>`
         : `<div style="height: 80px; width: 60px; border: 1px solid black"> <p style="margin: 0; font-size: 10px;">Poster not available</p> </div>`;
         listul.insertAdjacentHTML('beforeend', 
+            // store movie data in data attributes
             `
-            <li>
+            <li
+            data-tmdb-id="${movie.id}"
+            data-title="${movie.original_title}"
+            data-overview="${movie.overview || ''}"
+            data-poster-path="${movie.poster_path || ''}"
+            data-release-date="${movie.release_date || ''}"
+            >
             ${poster}
             <p>${movie.original_title} (${movie.release_date})</p>
             </li>
@@ -105,12 +112,13 @@ function displaySearchResults(movieList) {
     resultsContainer.style.display = "block";
 }
 
-    resultsContainer.addEventListener('click', event => {
-    const target = event.target.closest("li");
-    if(target) {
-        addMovieToLibrary(target);
-    }
-    });
+resultsContainer.addEventListener('click', event => {
+const target = event.target.closest("li");
+if(target) {
+    // console.log(target)
+    sendMovieToBackend(target);
+}
+});
 
 // adds movie to library
 function addMovieToLibrary(movie) {
@@ -123,11 +131,40 @@ function addMovieToLibrary(movie) {
     // create div
     const movieCard = document.createElement("div");
     movieCard.className = "movie-card";
-    movieCard.appendChild(moviePoster);
-    movieCard.appendChild(movieTitle);
+    movieCard.appendChild(moviePoster.cloneNode(true));
+    movieCard.appendChild(movieTitle.cloneNode(true));
     // add movie to libraryContainer
     libraryContainer.appendChild(movieCard);
     closeForm();
+}
+
+async function sendMovieToBackend(movieElement) {
+    // Extract data from data attributes
+    const movieData = {
+        id: movieElement.dataset.tmdbId,
+        original_title: movieElement.dataset.title,
+        overview: movieElement.dataset.overview,
+        poster_path: movieElement.dataset.posterPath,
+        release_date: movieElement.dataset.releaseDate
+    }
+
+    try{
+        const res = await fetch(`${BASE_URL}/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(movieData)
+        });
+    
+        if(!res.ok) {
+            console.error(`Failed to add movie: ${res.status}, ${res.statusText}`);
+            return;
+        }
+        addMovieToLibrary(movieElement);
+    } catch(error) {
+        console.error('Error adding movie to the library: ', error);
+    }
 }
 
 function testDisplay() {

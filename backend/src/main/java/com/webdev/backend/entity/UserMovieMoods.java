@@ -12,11 +12,17 @@ public class UserMovieMoods {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_movie_id")
+    @JoinColumn(
+        name = "user_movie_id",
+        nullable = false
+    )
     private UserMovies userMovies;
 
     @ManyToOne
-    @JoinColumn(name = "mood_id")
+    @JoinColumn(
+        name = "mood_id",
+        nullable = false
+    )
     private Mood mood;
 
     @Column(
