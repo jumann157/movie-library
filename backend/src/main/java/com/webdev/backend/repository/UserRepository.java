@@ -1,13 +1,13 @@
 package com.webdev.backend.repository;
 
-import com.webdev.backend.entity.Movie;
-
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.webdev.backend.entity.User;
+
 @Repository
-public interface MovieRepository extends JpaRepository<Movie, Long> {
-    Optional<Movie> findByTmdbId(Integer tmdbId);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 }
