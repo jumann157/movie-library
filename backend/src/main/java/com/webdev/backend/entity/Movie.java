@@ -110,6 +110,55 @@ public class Movie {
     public int getReleaseYear() {
         return releaseDate != null ? releaseDate.getYear() : 0; // if releaseDate is not null (condition), return release Year OR 0
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((tmdbId == null) ? 0 : tmdbId.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + ((overview == null) ? 0 : overview.hashCode());
+        result = prime * result + ((posterPath == null) ? 0 : posterPath.hashCode());
+        result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Movie other = (Movie) obj;
+        if (tmdbId == null) {
+            if (other.tmdbId != null)
+                return false;
+        } else if (!tmdbId.equals(other.tmdbId))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        if (overview == null) {
+            if (other.overview != null)
+                return false;
+        } else if (!overview.equals(other.overview))
+            return false;
+        if (posterPath == null) {
+            if (other.posterPath != null)
+                return false;
+        } else if (!posterPath.equals(other.posterPath))
+            return false;
+        if (releaseDate == null) {
+            if (other.releaseDate != null)
+                return false;
+        } else if (!releaseDate.equals(other.releaseDate))
+            return false;
+        return true;
+    }
     
 
 }

@@ -1,5 +1,8 @@
 package com.webdev.backend.services;
 
+import java.lang.classfile.constantpool.IntegerEntry;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.webdev.backend.entity.Movie;
@@ -24,9 +27,17 @@ public class UserMovieService {
         userMovieRepo.save(userMovie); 
     }
 
-    // 1. get user, 2. get all movies associated with said user, 3. check if movie exists 
-    // 4. if exists, return true 5. if not, return false and call addUserMovie
-    // private boolean checkDuplicates() {
+    public boolean checkUserMovieDuplicates(User u, Movie m) {
+        List<UserMovies> movies = userMovieRepo.findByUser(u); 
+        for (UserMovies umv : movies) {
+            System.out.println(umv.getMovie().getTitle());
 
-    // }
+            Movie userMovie = umv.getMovie();
+            if(userMovie.equals(m)) {
+                return true; // duplicate is found, user already has movie added to their library
+            }
+        }
+        addUserMovie(u, m); // if not found (movie is NOT added to user's library), add a record
+        return false; // m is not found
+    }
 }

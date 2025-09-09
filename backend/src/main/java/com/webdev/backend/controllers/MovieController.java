@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.webdev.backend.entity.Movie;
+import com.webdev.backend.entity.User;
 import com.webdev.backend.models.MovieDTO;
 import com.webdev.backend.models.MovieResponse;
 import com.webdev.backend.services.MovieService;
@@ -38,9 +40,11 @@ public class MovieController {
     @PostMapping("/add")
     public ResponseEntity<String> addMovieToDb(@RequestBody MovieDTO movie) {
         try {
-            movieService.checkDuplicates(movie); // checks Movie Entity
-            userMovieService.addUserMovie(userService.getUser("abc123"), movieService.getMovie(movie.getId()));
-            // add an instance to UserMovie (getUserId, and getMovieID (not tmbdID -> get primary key))
+            movieService.checkDuplicates(movie); // checks if movie already exists in Movie Entity, if not it adds it
+            boolean isDuplicate = userMovieService.checkUserMovieDuplicates(userService.getUser("abc123"), movieService.getMovie(movie.getId()));
+            if(isDuplicate) {
+                return ResponseEntity.status(400).body("UserMovie already exists");
+            }
             /*
              * 1. create a UserMovieService instance
              * 2. if(checkduplicates) is true, return ResponseEntity with success message
