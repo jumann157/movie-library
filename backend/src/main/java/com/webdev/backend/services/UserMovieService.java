@@ -1,6 +1,5 @@
 package com.webdev.backend.services;
 
-import java.lang.classfile.constantpool.IntegerEntry;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +14,9 @@ import com.webdev.backend.repository.UserMovieRepository;
 @Service
 public class UserMovieService {
     private UserMovieRepository userMovieRepo;
-    private UserService userService;
-    private MovieService movieService;
-    private MovieLibraryDTO movieLibDto;
 
-    public UserMovieService(UserMovieRepository userMovieRepo, UserService userService, MovieService movieService) {
+    public UserMovieService(UserMovieRepository userMovieRepo) {
         this.userMovieRepo = userMovieRepo;
-        this.userService = userService;
-        this.movieService = movieService;
     }
 
     public void addUserMovie(User u, Movie m) {

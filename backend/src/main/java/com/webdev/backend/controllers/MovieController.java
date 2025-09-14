@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.webdev.backend.entity.Movie;
 import com.webdev.backend.entity.User;
 import com.webdev.backend.models.MovieDTO;
 import com.webdev.backend.models.MovieLibraryDTO;

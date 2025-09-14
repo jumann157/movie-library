@@ -1,7 +1,5 @@
 package com.webdev.backend.services;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.webdev.backend.entity.User;
