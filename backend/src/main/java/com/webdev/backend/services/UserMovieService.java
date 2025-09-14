@@ -1,6 +1,7 @@
 package com.webdev.backend.services;
 
 import java.lang.classfile.constantpool.IntegerEntry;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.webdev.backend.entity.Movie;
 import com.webdev.backend.entity.User;
 import com.webdev.backend.entity.UserMovies;
+import com.webdev.backend.models.MovieLibraryDTO;
 import com.webdev.backend.repository.UserMovieRepository;
 
 @Service
@@ -15,6 +17,7 @@ public class UserMovieService {
     private UserMovieRepository userMovieRepo;
     private UserService userService;
     private MovieService movieService;
+    private MovieLibraryDTO movieLibDto;
 
     public UserMovieService(UserMovieRepository userMovieRepo, UserService userService, MovieService movieService) {
         this.userMovieRepo = userMovieRepo;
@@ -39,5 +42,22 @@ public class UserMovieService {
         }
         addUserMovie(u, m); // if not found (movie is NOT added to user's library), add a record
         return false; // m is not found
+    }
+
+    public List<MovieLibraryDTO> getUserLibrary(User user) {
+        List<UserMovies> userMovies = userMovieRepo.findByUser(user);
+
+        List<MovieLibraryDTO> movieLibrary = new ArrayList<>();
+        for(UserMovies um : userMovies) {
+            movieLibrary.add(convertTMovieLibraryDTO(um));
+        }
+        return movieLibrary;
+    }
+
+    public MovieLibraryDTO convertTMovieLibraryDTO(UserMovies userMovie) {
+        return new MovieLibraryDTO(
+            userMovie.getMovie().getTmdbId(),
+            userMovie.getMovie().getPosterPath()
+            );
     }
 }

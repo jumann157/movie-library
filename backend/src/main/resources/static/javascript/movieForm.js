@@ -46,12 +46,14 @@ movieCard.forEach(card => {
     });
 });
 
+// event listen to close sideMenu
 const sideMenuCloseIcon = document.querySelector("#description-side-menu .fa-circle-xmark");
 sideMenuCloseIcon.addEventListener('click', e => {
     sideMenu.style.display = "none";
     
 });
 
+// closes movie form
 function closeForm() {
     blurOverlay.style.display = "none";
     movieFormOne.style.display = "none";
@@ -63,6 +65,7 @@ function closeForm() {
 const searchForm = document.getElementById("search-form");
 const searchInput = searchForm.querySelector("input");
 const resultsContainer = document.getElementById("search-results");
+// fetch results
 searchForm.addEventListener('submit', async(e) => {
     e.preventDefault();
     
@@ -84,6 +87,7 @@ searchForm.addEventListener('submit', async(e) => {
     searchInput.value = "";
 });
 
+// display results
 function displaySearchResults(movieList) {
     resultsContainer.style.display = "block";
     const listul = resultsContainer.querySelector("ul");
@@ -113,6 +117,7 @@ function displaySearchResults(movieList) {
     resultsContainer.style.display = "block";
 }
 
+// user feedback on movie duplicates in library
 function displayAlreadyExistsAlertInSearchResults(target) {
     const p = target.querySelector('p');
     p.insertAdjacentHTML('beforeend', '<div class="search-alert">Already exists in your library</div>');
@@ -131,11 +136,12 @@ function fadeOut(element, intervalID) {
     }
 }
 
+// event listener on target movie search results 
 resultsContainer.addEventListener('click', event => {
 const target = event.target.closest("li");
 if(target) {
     console.log(target)
-    sendMovieToBackend(target);
+    sendMovieToBackend(target); // add it to database
 }
 });
 
@@ -151,7 +157,7 @@ function addMovieToLibrary(movie) {
     const movieCard = document.createElement("div");
     movieCard.className = "movie-card";
     movieCard.appendChild(moviePoster.cloneNode(true));
-    movieCard.appendChild(movieTitle.cloneNode(true));
+    // movieCard.appendChild(movieTitle.cloneNode(true));
     // add movie to libraryContainer
     libraryContainer.appendChild(movieCard);
     closeForm();

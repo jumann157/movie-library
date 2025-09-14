@@ -394,7 +394,7 @@ main {
 .movie-card {
     width: 100%;
     max-width: 11em;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .poster {
