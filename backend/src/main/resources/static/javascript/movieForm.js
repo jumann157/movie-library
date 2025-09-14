@@ -102,6 +102,7 @@ function displaySearchResults(movieList) {
             data-overview="${movie.overview || ''}"
             data-poster-path="${movie.poster_path || ''}"
             data-release-date="${movie.release_date || ''}"
+            class="movie-results"
             >
             ${poster}
             <p>${movie.original_title} (${movie.release_date})</p>
@@ -112,10 +113,28 @@ function displaySearchResults(movieList) {
     resultsContainer.style.display = "block";
 }
 
+function displayAlreadyExistsAlertInSearchResults(target) {
+    const p = target.querySelector('p');
+    p.insertAdjacentHTML('beforeend', '<div class="search-alert">Already exists in your library</div>');
+    const alert = document.querySelector('.search-alert');
+    // const intervalID = setInterval(() => {fadeOut(alert, intervalID)}, 1000);
+}
+
+function fadeOut(element, intervalID) {
+    var elementOp = parseFloat(window.getComputedStyle(element).getPropertyValue("opacity"));
+    console.log(elementOp);
+    if(elementOp > 0) {
+        element.style.opacity -= 0.1;
+    } else {
+        clearInterval(intervalID);
+        element.remove();
+    }
+}
+
 resultsContainer.addEventListener('click', event => {
 const target = event.target.closest("li");
 if(target) {
-    // console.log(target)
+    console.log(target)
     sendMovieToBackend(target);
 }
 });
@@ -156,9 +175,15 @@ async function sendMovieToBackend(movieElement) {
             },
             body: JSON.stringify(movieData)
         });
+        const text = await res.text();
     
-        if(!res.ok) {
-            console.error(`Failed to add movie: ${res.status}, ${res.statusText}`);
+        if(res.status == 500) {
+            console.error(`${res.status}: ${text} , ${res.statusText}`);
+            return;
+        }
+        if(res.status == 400) {
+            displayAlreadyExistsAlertInSearchResults(movieElement);
+            console.info(`${res.status}: ${text} , ${res.statusText}`);
             return;
         }
         addMovieToLibrary(movieElement);

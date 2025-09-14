@@ -524,7 +524,7 @@ main {
     margin-bottom: 0;
 }
 
-#search-results li {
+#search-results .movie-results {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -534,14 +534,25 @@ main {
     padding-left: 10px;
 }
 
-#search-results li:hover {
+#search-results .movie-results:hover {
     background-color: hsl(from var(--black) h s calc(l + 30) / 0.5);
 }
 
 #search-results ul p {
-    display: inline-block;
+    display: block;
     width: 100%;
     margin-left: 15px;
+}
+
+.search-alert{
+    display: block;
+    color: hsl(160, 60%, 30%);
+    font-size: 10px;
+}
+
+#search-results .movie-results:hover .search-alert{
+    display: block;
+    color: hsl(0, 60%, 45%);
 }
 
 #search-results img {
