@@ -57,7 +57,8 @@ public class UserMovieService {
     public MovieLibraryDTO convertTMovieLibraryDTO(UserMovies userMovie) {
         return new MovieLibraryDTO(
             userMovie.getMovie().getTmdbId(),
-            userMovie.getMovie().getPosterPath()
+            userMovie.getMovie().getPosterPath(),
+            userMovie.getMovie().getTitle()
             );
     }
 }

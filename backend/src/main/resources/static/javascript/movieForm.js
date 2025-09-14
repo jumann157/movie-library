@@ -5,6 +5,10 @@ const sideMenu = document.querySelector("#description-side-menu");
 const movieCard = document.querySelectorAll(".movie-card");
 const BASE_URL = 'http://localhost:8080';
 
+document.addEventListener('DOMContentLoaded', async () => {
+    const data = await loadLibraryFromDb();
+    loadUiLibrary(data);
+});
 
 // Event listener for the + button
 const addButton = document.querySelector("#button-container button");
@@ -145,24 +149,53 @@ if(target) {
 }
 });
 
-// adds movie to library
-function addMovieToLibrary(movie) {
-    const moviePoster = movie.querySelector("img");
-    moviePoster.className = "poster";
-    const movieTitle = movie.querySelector("p");
-    movieTitle.className = "caption";
-    // get div container
-    const libraryContainer = document.getElementById("library-container");
+// create movie card for library
+function createMovieCard(movie) {
     // create div
     const movieCard = document.createElement("div");
     movieCard.className = "movie-card";
-    movieCard.appendChild(moviePoster.cloneNode(true));
-    // movieCard.appendChild(movieTitle.cloneNode(true));
-    // add movie to libraryContainer
-    libraryContainer.appendChild(movieCard);
-    closeForm();
+    movieCard.dataset.tmdbId = movie.tmdbId; //add tmbdb id as data attribute
+
+    // create img element for poster
+    const posterImg = document.createElement('img');
+    posterImg.src = `https://image.tmdb.org/t/p/original/${movie.posterPath}`;
+    posterImg.alt = movie.movieTitle;
+    posterImg.className = "poster";
+    
+    // append to movieCard
+    movieCard.appendChild(posterImg);
+    return movieCard;
 }
 
+// loads movie cards to library
+function loadUiLibrary(data) {
+    // get div container
+    const libraryContainer = document.getElementById("library-container");
+
+    // remove all existing cards
+    libraryContainer.innerHTML = '';
+
+    // create new movie cards
+    data.forEach( (movie) => {
+        const m = createMovieCard(movie);
+        libraryContainer.appendChild(m);
+    });
+}
+
+// get all movies associated with current user from database
+async function loadLibraryFromDb() {
+    try {
+        const res = await fetch(`${BASE_URL}/library`);
+        const data = await res.json(); //list of json objects
+
+        return data;
+    } 
+    catch (error) {
+        console.error("Error: " +  error);
+    }
+}
+
+// adds movie to database, called when user clicks on one of the search results
 async function sendMovieToBackend(movieElement) {
     // Extract data from data attributes
     const movieData = {
@@ -182,6 +215,12 @@ async function sendMovieToBackend(movieElement) {
             body: JSON.stringify(movieData)
         });
         const text = await res.text();
+
+        if(res.ok) {
+            const data = await loadLibraryFromDb();
+            loadUiLibrary(data);
+            closeForm();
+        }
     
         if(res.status == 500) {
             console.error(`${res.status}: ${text} , ${res.statusText}`);
@@ -192,16 +231,7 @@ async function sendMovieToBackend(movieElement) {
             console.info(`${res.status}: ${text} , ${res.statusText}`);
             return;
         }
-        addMovieToLibrary(movieElement);
     } catch(error) {
         console.error('Error adding movie to the library: ', error);
     }
-}
-
-function testDisplay() {
-    const movieTest = [
-        {name: "Batmaan: Movie 1", poster: "https://image.tmdb.org/t/p/original/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg"},
-        {name: "Batman: Movie 2", poster: "https://image.tmdb.org/t/p/original/cij4dd21v2Rk2YtUQbV5kW69WB2.jpg"}
-    ];
-    displaySearchResults(movieTest);
 }
